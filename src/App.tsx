@@ -28,7 +28,7 @@ const App: React.FC = () => {
     <div className="min-h-screen flex flex-col">
       <header className="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-slate-200">
         <div className="mx-auto max-w-5xl px-4 py-3 flex items-center justify-between">
-          <Link to="/" className="text-xl font-semibold text-slate-900">Core Values Shortlist</Link>
+          <Link to="/" className="text-xl font-semibold text-slate-900">Core Values Identifier</Link>
           <nav className="flex items-center gap-4 text-sm">
             <Link to="/instructions" className="text-slate-600 hover:text-slate-900">Instructions</Link>
             <Link to="/disclaimer" className="text-slate-600 hover:text-slate-900">Disclaimer</Link>
