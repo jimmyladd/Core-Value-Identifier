@@ -1,11 +1,9 @@
-
 import React, { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import useStore from '../lib/store'
 import ValueCard from '../components/ValueCard'
 import Modal from '../components/Modal'
 import ProgressBar from '../components/ProgressBar'
-import { CATEGORY_DEFINITIONS } from '../lib/categoryDefs'
 
 const SelectValues: React.FC = () => {
   const navigate = useNavigate()
@@ -15,7 +13,7 @@ const SelectValues: React.FC = () => {
   const target = useStore(s => s.targetKeep)
   const toggleSelect = useStore(s => s.toggleSelect)
   const submitRound = useStore(s => s.submitRound)
-  const resetAll = useStore(s => s.resetAll)
+  const resetAll = useStore(s => s.resetAll) // (not shown, but kept if you want to add a reset button later)
   const resetRound = useStore(s => s.resetRound)
 
   const [query, setQuery] = useState('')
@@ -36,8 +34,7 @@ const SelectValues: React.FC = () => {
     if (!q) return pool
     return pool.filter(v =>
       v.term.toLowerCase().includes(q) ||
-      v.definition.toLowerCase().includes(q) ||
-      v.category.toLowerCase().includes(q)
+      v.definition.toLowerCase().includes(q)
     )
   }, [pool, query])
 
@@ -69,12 +66,6 @@ const SelectValues: React.FC = () => {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <button
-          className="rounded-xl border border-slate-300 px-3 py-2 text-sm"
-          onClick={() => setPeek({open: true})}
-        >
-          What do categories mean?
-        </button>
       </div>
 
       <div className="mt-4 sm:hidden">
@@ -112,22 +103,13 @@ const SelectValues: React.FC = () => {
         </div>
       </div>
 
-      {/* Peek modal */}
-      <Modal open={peek.open} onClose={() => setPeek({open:false})} title={peek.term ? peek.term : "Categories"}>
+      {/* Definition peek modal (still available on the (i) button) */}
+      <Modal open={peek.open} onClose={() => setPeek({open:false})} title={peek.term ? peek.term : "Definition"}>
         {peek.term ? (
           <div>
             <div className="text-slate-700 whitespace-pre-wrap">{peek.def}</div>
           </div>
-        ) : (
-          <div className="space-y-4">
-            {CATEGORY_DEFINITIONS.map(c => (
-              <div key={c.category}>
-                <div className="font-medium">{c.category} Values</div>
-                <div className="text-sm text-slate-700 mt-1">{c.definition}</div>
-              </div>
-            ))}
-          </div>
-        )}
+        ) : null}
       </Modal>
     </div>
   )
