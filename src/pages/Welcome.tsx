@@ -24,7 +24,7 @@ const Welcome: React.FC = () => {
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-10">
-      <h1 className="text-3xl font-bold text-slate-900">Core Values Shortlist</h1>
+      <h1 className="text-3xl font-bold text-slate-900">Core Values Identifier</h1>
       <p className="mt-3 text-slate-600">
         Identify the <strong>10 values</strong> that matter most to you. You’ll start with 222 values and make quick, progressive cuts until only 10 remain.
       </p>
