@@ -3,8 +3,8 @@ import Papa from 'papaparse'
 import type { ValueItem } from './types'
 import { shuffle } from './utils'
 
-// The CSV is placed in /public so we can fetch it at runtime
-const CSV_URL = '/core_values.csv'
+// Use the site base path so it works on GitHub Pages
+const CSV_URL = `${import.meta.env.BASE_URL}core_values.csv`
 
 export async function loadValuesFromCSV(): Promise<ValueItem[]> {
   const res = await fetch(CSV_URL)
